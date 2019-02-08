@@ -13,7 +13,5 @@ namespace Back.Models.Entities
         public virtual CardType Type { get; set; }
         public virtual CardAttribute Attribute { get; set; }
         public virtual string Description { get; set; }
-        public virtual string ATK { get; set; }
-        public virtual string DEF { get; set; }
     }
 }
