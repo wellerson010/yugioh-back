@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using Microsoft.Extensions.Configuration;
 using NHibernate;
 using NHibernate.Context;
 using System;
@@ -12,15 +13,18 @@ namespace Back.Database
 {
     public class SessionFactoryBuilder
     {
-        public static ISessionFactory BuildSessionFactory (string connectionStringName, bool create = false, bool update = false)
+        public static ISessionFactory BuildSessionFactory ()
         {
             //ConnectionString
+            var builder = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json");
+            var configuration = builder.Build();
+            var connectionstring = configuration["ConnectionStrings:local"];
 
             return Fluently.Configure()
             .Database(PostgreSQLConfiguration.Standard
-            .ConnectionString(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+            .ConnectionString(connectionstring))
             //.Mappings(m => entityMappingTypes.ForEach(e => { m.FluentMappings.Add(e); }))
-            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NHibernate.Cfg.Mappings>())
+            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Back.Models.Map.MonsterMap>())
             .CurrentSessionContext("web")
         //    .ExposeConfiguration(cfg => )
             .BuildSessionFactory();

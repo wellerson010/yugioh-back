@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Back.Models.Entities
 {
-    public class Monster : BaseModel, Card
+    public class Monster : BaseModel, ICard
     {
         public virtual string Name { get; set; }
         public virtual string Passcode { get; set; }
@@ -16,7 +16,6 @@ namespace Back.Models.Entities
         public virtual string ATK { get; set; }
         public virtual string DEF { get; set; }
         public virtual int Level { get; set; }
-
         public virtual MonsterType MonsterType { get; set; }
     }
 }

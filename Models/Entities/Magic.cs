@@ -6,7 +6,7 @@ using Back.Models.Enumns;
 
 namespace Back.Models.Entities
 {
-    public class Magic : BaseModel, Card
+    public class Magic : BaseModel, ICard
     {
         public virtual string Name { get; set; }
         public virtual string Passcode { get; set; }

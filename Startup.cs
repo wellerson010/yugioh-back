@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Back.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -18,6 +19,7 @@ namespace Back
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            SessionFactoryBuilder.BuildSessionFactory();
         }
 
         public IConfiguration Configuration { get; }

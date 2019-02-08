@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Back.Models.Entities
 {
-    public interface Card
+    public interface ICard
     {
+        long Id { get; set; }
+
         string Name { get; set; }
 
         string Passcode { get; set; }
