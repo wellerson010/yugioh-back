@@ -14,7 +14,7 @@ namespace Back.Models.Map
             Id(x => x.Id).GeneratedBy.HiLo("nhibernate.table_key", "next_value", "1", "type = 'card'");
             Map(x => x.Name);
             Map(x => x.Passcode);
-            Map(x => x.Type);
+            
             Map(x => x.Attribute);
             Map(x => x.Description);
 

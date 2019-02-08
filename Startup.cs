@@ -19,7 +19,8 @@ namespace Back
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            SessionFactoryBuilder.BuildSessionFactory();
+            string connectionString = Configuration.GetConnectionString("local");
+            SessionFactoryBuilder.BuildSessionFactory(connectionString);
         }
 
         public IConfiguration Configuration { get; }

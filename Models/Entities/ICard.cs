@@ -14,7 +14,7 @@ namespace Back.Models.Entities
 
         string Passcode { get; set; }
 
-        CardType Type { get; set; }
+      //  CardType Type { get; set; }
 
         CardAttribute Attribute { get; set; }
 

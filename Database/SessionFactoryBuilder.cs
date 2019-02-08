@@ -13,16 +13,16 @@ namespace Back.Database
 {
     public class SessionFactoryBuilder
     {
-        public static ISessionFactory BuildSessionFactory ()
+        public static ISessionFactory BuildSessionFactory (string connectionString)
         {
             //ConnectionString
-            var builder = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json");
+           /* var builder = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json");
             var configuration = builder.Build();
             var connectionstring = configuration["ConnectionStrings:local"];
-
+            */
             return Fluently.Configure()
             .Database(PostgreSQLConfiguration.Standard
-            .ConnectionString(connectionstring))
+            .ConnectionString(connectionString))
             //.Mappings(m => entityMappingTypes.ForEach(e => { m.FluentMappings.Add(e); }))
             .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Back.Models.Map.MonsterMap>())
             .CurrentSessionContext("web")
