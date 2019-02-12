@@ -11,6 +11,7 @@ namespace Back.Models.Map
     {
         public MonsterMap()
         {
+            Schema("yugioh");
             Table("monster");
 
             Map(x => x.ATK);

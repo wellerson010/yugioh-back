@@ -18,7 +18,7 @@ namespace Back.Models.Map
             Map(x => x.Attribute);
             Map(x => x.Description);
 
-            Schema("card");
+            Schema("yugioh");
 
             UseUnionSubclassForInheritanceMapping();
         }

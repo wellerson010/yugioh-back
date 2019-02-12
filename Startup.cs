@@ -11,11 +11,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NHibernate;
 
 namespace Back
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,16 +26,10 @@ namespace Back
             SessionFactoryBuilder.BuildSessionFactory(connectionString);
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-         /*   var commandsConnectionString = new CommandsConnectionString(Configuration["ConnectionString"]);
-            var queriesConnectionString = new QueriesConnectionString(Configuration["QueriesConnectionString"]);
-            services.AddSingleton(commandsConnectionString); */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,9 +45,8 @@ namespace Back
                 app.UseHsts();
             }
 
-           
-
             app.UseHttpsRedirection();
+            app.UseMiddleware<MiddlewareSessionPersistance>();
             app.UseMvc();
         }
     }
