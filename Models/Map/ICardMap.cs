@@ -1,4 +1,5 @@
 ﻿using Back.Models.Entities;
+using Back.Models.Enumns;
 using FluentNHibernate.Mapping;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Back.Models.Map
             Map(x => x.Name);
             Map(x => x.Passcode);
             
-            Map(x => x.Attribute);
+            Map(x => x.Attribute).CustomType<CardAttribute>(); ;
             Map(x => x.Description);
 
             UseUnionSubclassForInheritanceMapping();

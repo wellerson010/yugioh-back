@@ -1,4 +1,5 @@
 ﻿using Back.Models.Entities;
+using Back.Models.Enumns;
 using FluentNHibernate.Mapping;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Back.Models.Map
             Map(x => x.ATK);
             Map(x => x.DEF);
             Map(x => x.Level);
-            Map(x => x.MonsterType, "monster_type");
+            Map(x => x.MonsterType, "monster_type").CustomType<MonsterType>(); ;
         }
     }
 }
