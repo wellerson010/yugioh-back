@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Back.Database;
+using Back.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -47,6 +48,7 @@ namespace Back
 
             app.UseHttpsRedirection();
             app.UseMiddleware<MiddlewareSessionPersistance>();
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseMvc();
         }
     }
