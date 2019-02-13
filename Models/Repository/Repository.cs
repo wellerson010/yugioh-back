@@ -50,17 +50,24 @@ namespace Back.Models.Repository
             }
         }
 
-        public T GetById(long id)
+        public Task<T> GetById(long id)
         {
-            return NHibernateHelper.Session.Get<T>(id);
+            return NHibernateHelper.Session.GetAsync<T>(id);
         }
 
-        public void Save(T obj)
+        public async Task Save(T obj)
         {
             BeginTransaction();
-            NHibernateHelper.Session.Save(obj);
+            await NHibernateHelper.Session.SaveAsync(obj);
             Commit();
         }
 
+        public async Task DeleteById(long id)
+        {
+            BeginTransaction();
+            T obj = await GetById(id);
+            await NHibernateHelper.Session.DeleteAsync(obj);
+            Commit();
+        }
     }
 }

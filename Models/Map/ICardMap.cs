@@ -18,8 +18,6 @@ namespace Back.Models.Map
             Map(x => x.Attribute);
             Map(x => x.Description);
 
-            Schema("yugioh");
-
             UseUnionSubclassForInheritanceMapping();
         }
     }
