@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Back.Models.Repository
 {
-    public class Repository<T> where T:BaseModel
+    public class Repository<T> where T:class
     {
         private ITransaction transaction;
 
@@ -68,6 +68,11 @@ namespace Back.Models.Repository
             T obj = await GetById(id);
             await NHibernateHelper.Session.DeleteAsync(obj);
             Commit();
+        }
+
+        public ISession Session()
+        {
+            return NHibernateHelper.Session;
         }
     }
 }

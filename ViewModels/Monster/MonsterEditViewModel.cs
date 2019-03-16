@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Back.ViewModels
+namespace Back.ViewModels.Monster
 {
     public class MonsterEditViewModel
     {
@@ -24,7 +24,7 @@ namespace Back.ViewModels
 
         }
 
-        public MonsterEditViewModel(Monster monster)
+     /*   public MonsterEditViewModel(Monster monster)
         {
             Id = monster.Id;
             Name = monster.Name;
@@ -35,6 +35,6 @@ namespace Back.ViewModels
             DEF = monster.DEF;
             Level = monster.Level;
             MonsterType = monster.MonsterType;
-        }
+        } */
     }
 }

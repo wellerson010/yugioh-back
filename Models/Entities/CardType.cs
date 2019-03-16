@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Back.Models.Entities
 {
-    public class CardType:BaseModel
+    public class CardType
     {
         public string Name { get; set; }
     }
