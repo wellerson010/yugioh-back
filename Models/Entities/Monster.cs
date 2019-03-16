@@ -8,7 +8,7 @@ namespace Back.Models.Entities
 {
     public class Monster : ICard
     {
-        public virtual long Id { get; set; }
+        public virtual string Id { get; set; }
         public virtual string Name { get; set; }
         public virtual string Passcode { get; set; }
         public virtual CardType Type { get; set; }

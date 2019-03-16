@@ -1,6 +1,5 @@
 ﻿using Back.Database;
-using Back.Models.Entities;
-using NHibernate;
+using Raven.Client.Documents.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,71 +7,29 @@ using System.Threading.Tasks;
 
 namespace Back.Models.Repository
 {
-    public class Repository<T> where T:class
+    public abstract class Repository<T> where T:class
     {
-        private ITransaction transaction;
-
-
-        private void CloseTransaction()
+        public IAsyncDocumentSession Session
         {
-            transaction.Dispose();
-            transaction = null;
-        }
-
-        private void BeginTransaction()
-        {
-            transaction = NHibernateHelper.Session.BeginTransaction();
-        }
-
-        private void Commit()
-        {
-            try
+            get
             {
-                // commit transaction if there is one active
-                if (transaction != null && transaction.IsActive)
-                {
-                    transaction.Commit();
-                }
-            }
-            catch
-            {
-                // rollback if there was an exception
-                if (transaction != null && transaction.IsActive)
-                {
-                    transaction.Rollback();
-                }
-
-                throw;
-            }
-            finally
-            {
-                CloseTransaction();
+                return RavenInstance.Session;
             }
         }
 
-        public Task<T> GetById(long id)
+        public Task Save(T entity)
         {
-            return NHibernateHelper.Session.GetAsync<T>(id);
+            return Session.StoreAsync(entity);
         }
 
-        public async Task Save(T obj)
+        public void Delete(T entity)
         {
-            BeginTransaction();
-            await NHibernateHelper.Session.SaveAsync(obj);
-            Commit();
+            Session.Delete(entity);
         }
 
-        public async Task DeleteById(long id)
+        public void DeleteById(string id)
         {
-            BeginTransaction();
-            T obj = await GetById(id);
-            await NHibernateHelper.Session.DeleteAsync(obj);
-            Commit();
-        }
-
-        public ISession Session()
-        {
-            return NHibernateHelper.Session;
+            Session.Delete(id);
         }
     }
 }

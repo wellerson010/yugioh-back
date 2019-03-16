@@ -12,7 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NHibernate;
 
 namespace Back
 {
@@ -23,8 +22,15 @@ namespace Back
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            string connectionString = Configuration.GetConnectionString("local");
-            SessionFactoryBuilder.BuildSessionFactory(connectionString);
+
+            ConfigureDatabase();
+        }
+
+        private void ConfigureDatabase()
+        {
+            string urlDatabase = Configuration["Database:Url"];
+            string[] urls = { urlDatabase };
+            RavenInstance.CreateStore(urls, "YuGiOh");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

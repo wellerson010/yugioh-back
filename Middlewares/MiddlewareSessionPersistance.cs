@@ -25,16 +25,15 @@ namespace Back.Middlewares
 
         private void BeginInvoke(HttpContext context)
         {
-            NHibernateHelper.Session = SessionFactoryBuilder.session.OpenSession();
+            RavenInstance.Session = RavenInstance.Store.OpenAsyncSession();
         }
 
         private void EndInvoke(HttpContext context)
         {
-            if (NHibernateHelper.Session != null)
+            if (RavenInstance.Session != null)
             {
-                NHibernateHelper.Session.Close();
-                NHibernateHelper.Session.Dispose();
-                NHibernateHelper.Session = null;
+                Task.Run(async () => await RavenInstance.Session.SaveChangesAsync());
+                RavenInstance.Session.Dispose();
             }
         }
     }

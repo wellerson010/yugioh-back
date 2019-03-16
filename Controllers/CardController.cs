@@ -14,7 +14,7 @@ namespace Back.Controllers
     [ApiController]
     public class CardController:Controller
     {
-        [HttpPost("getAll")]
+      /*  [HttpPost("getAll")]
         public async Task<IActionResult> GetAll([FromBody]CardGetAllParamsDTO data)
         {
             ICardRepository cardRepository = new ICardRepository();
@@ -22,6 +22,6 @@ namespace Back.Controllers
             IList<CardListViewModel> cardsViewModel = cards.Select(x => new CardListViewModel(x)).ToList();
 
             return Ok(cardsViewModel);
-        }
+        } */
     }
 }
