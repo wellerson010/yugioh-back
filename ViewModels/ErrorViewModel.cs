@@ -12,5 +12,7 @@ namespace Back.ViewModels
         public string Message { get; set; }
 
         public string StackTrace { get; set; }
+
+        public bool Error { get; set; } = true;
     }
 }

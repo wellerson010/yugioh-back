@@ -25,15 +25,15 @@ namespace Back.Middlewares
 
         private void BeginInvoke(HttpContext context)
         {
-            RavenInstance.Session = RavenInstance.Store.OpenAsyncSession();
+            RavenService.Session = RavenService.Store.OpenAsyncSession();
         }
 
         private void EndInvoke(HttpContext context)
         {
-            if (RavenInstance.Session != null)
+            if (RavenService.Session != null)
             {
-                Task.Run(async () => await RavenInstance.Session.SaveChangesAsync());
-                RavenInstance.Session.Dispose();
+                Task.Run(async () => await RavenService.Session.SaveChangesAsync());
+                RavenService.Session.Dispose();
             }
         }
     }

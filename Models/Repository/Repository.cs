@@ -13,7 +13,7 @@ namespace Back.Models.Repository
         {
             get
             {
-                return RavenInstance.Session;
+                return RavenService.Session;
             }
         }
 
@@ -30,6 +30,11 @@ namespace Back.Models.Repository
         public void DeleteById(string id)
         {
             Session.Delete(id);
+        }
+
+        public Task<T> GetById(string id)
+        {
+            return Session.LoadAsync<T>(id);
         }
     }
 }

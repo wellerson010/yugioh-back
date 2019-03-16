@@ -1,7 +1,10 @@
 ﻿using Back.Models.Entities;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Conventions;
+using Raven.Client.Documents.Operations;
 using Raven.Client.Documents.Session;
+using Raven.Client.Exceptions;
+using Raven.Client.Exceptions.Database;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
 using System;
@@ -11,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace Back.Database
 {
-    public class RavenInstance
+    public class RavenService
     {
         public static IDocumentStore Store { get; set; }
 
-        private static IAsyncDocumentSession _Session {get;set;}
+        private static IAsyncDocumentSession _Session { get; set; }
 
         public static IAsyncDocumentSession Session
         {
@@ -42,6 +45,10 @@ namespace Back.Database
                 Database = database,
                 Conventions =
                 {
+                    AsyncDocumentIdGenerator = (db, entity) =>
+                    {
+                        return Task.Run(() => Guid.NewGuid().ToString());
+                    },
                     FindCollectionName = type =>
                     {
                         if (typeof(Magic).IsAssignableFrom(type) || typeof(Monster).IsAssignableFrom(type))
@@ -51,10 +58,24 @@ namespace Back.Database
 
                         return typeof(Magic).Name;
                     }
-                }
-            }.Initialize();
+                },
 
-            Store.Maintenance.Server.Send(new CreateDatabaseOperation(new DatabaseRecord(database)));
+            }.Initialize();
+            CreateDatabase(Store, database);
+        }
+
+        public static void CreateDatabase(IDocumentStore store, string database = null)
+        {
+            database = database ?? store.Database;
+
+            try
+            {
+                store.Maintenance.ForDatabase(database).Send(new GetStatisticsOperation());
+            }
+            catch (DatabaseDoesNotExistException)
+            {
+                store.Maintenance.Server.Send(new CreateDatabaseOperation(new DatabaseRecord(database)));
+            }
         }
     }
 }

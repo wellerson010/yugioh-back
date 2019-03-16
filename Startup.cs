@@ -30,7 +30,7 @@ namespace Back
         {
             string urlDatabase = Configuration["Database:Url"];
             string[] urls = { urlDatabase };
-            RavenInstance.CreateStore(urls, "YuGiOh");
+            RavenService.CreateStore(urls, "YuGiOh");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

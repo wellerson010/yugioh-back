@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Back.ViewModels.Monster
+namespace Back.ViewModels.Monsters
 {
     public class MonsterEditViewModel
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Passcode { get; set; }
         public virtual CardAttribute Attribute { get; set; }
@@ -24,7 +24,7 @@ namespace Back.ViewModels.Monster
 
         }
 
-     /*   public MonsterEditViewModel(Monster monster)
+        public MonsterEditViewModel(Monster monster)
         {
             Id = monster.Id;
             Name = monster.Name;
@@ -35,6 +35,6 @@ namespace Back.ViewModels.Monster
             DEF = monster.DEF;
             Level = monster.Level;
             MonsterType = monster.MonsterType;
-        } */
+        } 
     }
 }
