@@ -55,6 +55,8 @@ namespace Back
             app.UseHttpsRedirection();
             app.UseMiddleware<MiddlewareSessionPersistance>();
             app.UseMiddleware<ErrorHandlerMiddleware>();
+
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
             app.UseMvc();
         }
     }

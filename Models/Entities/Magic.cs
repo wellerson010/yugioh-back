@@ -8,11 +8,11 @@ namespace Back.Models.Entities
 {
     public class Magic : ICard
     {
-        public virtual string Id { get; set; }
-        public virtual string Name { get; set; }
-        public virtual string Passcode { get; set; }
-        public virtual CardType Type { get; set; }
-        public virtual CardAttribute Attribute { get; set; }
-        public virtual string Description { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Passcode { get; set; }
+        public CardType Type { get; set; }
+        public CardAttribute Attribute { get; set; }
+        public string Description { get; set; }
     }
 }
