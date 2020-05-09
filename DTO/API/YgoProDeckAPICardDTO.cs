@@ -29,7 +29,7 @@ namespace Back.DTO.API
 
         public IList<YgoProDeckAPICardImageDTO> card_images { get; set; } = new List<YgoProDeckAPICardImageDTO>();
 
-        public YgoProDeckAPIMiscInformationDTO misc_info { get; set; }
+        public IList<YgoProDeckAPIMiscInformationDTO> misc_info { get; set; } = new List<YgoProDeckAPIMiscInformationDTO>();
     }
 }
 

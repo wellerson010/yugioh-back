@@ -12,5 +12,9 @@ namespace Back.DTO.API
         public string tcg_date { get; set; }
 
         public string ocg_date { get; set; }
+
+        public string staple { get; set; }
     }
 }
+
+//Yes

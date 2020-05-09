@@ -1,15 +1,30 @@
-﻿using Back.Models.Enumns;
+﻿using Back.DTO.API;
+using Back.Models.Enumns;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Back.Services
 {
     public class APIService
     {
-        public CardType TransformTypeToEnum(string type)
+        public async Task<IList<YgoProDeckAPICardDTO>> SynchronizeAll()
+        {
+            string url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?misc=Yes";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(url);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            IList<YgoProDeckAPICardDTO> data = JsonConvert.DeserializeObject<YgoProDeckAPIContainerCardDTO>(responseBody).data;
+
+            return data;
+        }
+
+        private CardType TransformTypeToEnum(string type)
         {
             switch (type)
             {
@@ -72,7 +87,7 @@ namespace Back.Services
             }
         }
 
-        public CardRace TransformRaceToEnum(string race)
+        private CardRace TransformRaceToEnum(string race)
         {
             switch (race)
             {
@@ -141,7 +156,7 @@ namespace Back.Services
             }
         }
 
-        public CardAttribute TransformAttributeToEnum(string attribute)
+        private CardAttribute TransformAttributeToEnum(string attribute)
         {
             switch (attribute){
                 case "WIND":
@@ -163,14 +178,14 @@ namespace Back.Services
             }
         }
 
-        public IList<CardLinkMarker> TransformCardLinkMarkersToEnum(IList<string> markers)
+        private IList<CardLinkMarker> TransformCardLinkMarkersToEnum(IList<string> markers)
         {
             IList<CardLinkMarker> responseMarkers = markers.Select(x => TransformCardLinkMarkerToEnum(x)).ToList();
 
             return responseMarkers;
         }
 
-        public DateTime TransformDate(string text)
+        private DateTime TransformDate(string text)
         {
             if (String.IsNullOrEmpty(text))
             {
@@ -187,7 +202,7 @@ namespace Back.Services
             }
         }
 
-        public CardLinkMarker TransformCardLinkMarkerToEnum(string marker)
+        private CardLinkMarker TransformCardLinkMarkerToEnum(string marker)
         {
             switch (marker)
             {

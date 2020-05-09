@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Back.DTO.API
 {
-    public class YgoProDeckAPICardSetsDTO
+    public class YgoProDeckAPICardSetsInCardDTO
     {
         public string set_name { get; set; }
         public string set_code { get; set; }
