@@ -31,8 +31,9 @@ namespace Back
         private void ConfigureDatabase()
         {
             string urlDatabase = Configuration["Database:Url"];
+            string databaseName = Configuration["Database:Name"];
             string[] urls = { urlDatabase };
-            RavenService.CreateStore(urls, "YuGiOh");
+            RavenService.CreateStore(urls, databaseName);
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -43,6 +44,11 @@ namespace Back
                     jsonOptions.JsonSerializerOptions.PropertyNamingPolicy = null;
                 }).
                 SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.AddCors(cors =>
+            {
+                cors.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -63,7 +69,7 @@ namespace Back
             app.UseMiddleware<MiddlewareSessionPersistance>();
             app.UseMiddleware<ErrorHandlerMiddleware>();
 
-            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
+            app.UseCors("CorsPolicy");
             app.UseEndpoints(endPoints=>
             {
                 endPoints.MapControllers();
