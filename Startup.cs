@@ -73,6 +73,7 @@ namespace Back
             app.UseEndpoints(endPoints=>
             {
                 endPoints.MapControllers();
+                //endPoints.MapControllerRoute(pattern: "default", name: "{controller=Values}/{action=Get}/{id?}");
             });
         }
     }
