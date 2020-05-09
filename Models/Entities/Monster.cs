@@ -18,5 +18,6 @@ namespace Back.Models.Entities
         public string DEF { get; set; }
         public int Level { get; set; }
         public MonsterType MonsterType { get; set; }
+        public bool Staple { get; set; }
     }
 }

@@ -14,10 +14,10 @@ namespace Back.Models.Entities
 
         string Passcode { get; set; }
 
-      //  CardType Type { get; set; }
-
-        CardAttribute Attribute { get; set; }
+        CardType Type { get; set; }
 
         string Description { get; set; }
+
+        bool Staple { get; set; }
     }
 }
