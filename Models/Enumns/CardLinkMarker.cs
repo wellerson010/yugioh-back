@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 
 namespace Back.Models.Enumns
 {
-    public enum CardAttribute
+    public enum CardLinkMarker
     {
         Undefined = 0,
-        Dark,
-        Divine,
-        Earth,
-        Fire,
-        Light,
-        Water,
-        Wind
+        Top,
+        Bottom,
+        Left,
+        Right,
+        BottomLeft, 
+        BottomRight,
+        TopLeft,
+        TopRight
     }
 }

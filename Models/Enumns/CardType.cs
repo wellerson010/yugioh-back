@@ -7,8 +7,33 @@ namespace Back.Models.Enumns
 {
     public enum CardType
     {
-        Monster = 1,
-        Spell = 2,
-        Trap = 3
+        Undefined = 0,
+        EffectMonster,
+        FlipEffectMonster,
+        FlipTunerEffectMonster,
+        GeminiMonster,
+        NormalMonster,
+        NormalTunerMonster,
+        PendulumEffectMonster,
+        PendulumFlipEffectMonster,
+        PendulumNormalMonster,
+        PendulumTunerEffectMonster,
+        RitualEffectMonster,
+        RitualMonster,
+        SkillCard,
+        SpellCard,
+        SpiritMonster,
+        ToonMonster,
+        TrapCard,
+        TunerMonster,
+        UnionEffectMonster,
+        FusionMonster,
+        LinkMonster,
+        PendulumEffectFusionMonster,
+        SynchroMonster,
+        SynchroPendulumEffectMonster,
+        SynchroTunerMonster,
+        XYZMonster,
+        XYZPendulumEffectMonster
     }
 }
