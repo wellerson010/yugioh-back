@@ -15,7 +15,7 @@ namespace Back.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> SynchronizeAll()
         {
-            await new APIService().GetAllCards();
+            await new YgoProDeckAPIService().GetAllArchetypes();
             return new string[] { "value1", "value2" };
         }
     }

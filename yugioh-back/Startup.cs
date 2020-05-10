@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Back.Configuration;
 using Back.Database;
 using Back.Middlewares;
 using Microsoft.AspNetCore.Builder;
@@ -38,6 +39,10 @@ namespace Back
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //AddScoped - São criados uma vez por solicitação
+            //AddSingleton
+            //AddTransient - são criados qnd solicitados
+
             services.AddMvc().
                 AddJsonOptions(jsonOptions =>
                 {
@@ -49,6 +54,9 @@ namespace Back
             {
                 cors.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
+
+
+            services.AddApplicationsDependency();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -66,6 +74,7 @@ namespace Back
             app.UseRouting();
 
          //   app.UseHttpsRedirection();
+
             app.UseMiddleware<MiddlewareSessionPersistance>();
             app.UseMiddleware<ErrorHandlerMiddleware>();
 

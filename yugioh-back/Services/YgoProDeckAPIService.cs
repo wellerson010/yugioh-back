@@ -10,11 +10,20 @@ using System.Threading.Tasks;
 
 namespace Back.Services
 {
-    public class APIService
+    public class YgoProDeckAPIService
     {
-        public async Task<IList<YgoProDeckAPICardDTO>> SynchronizeAll()
+        private async Task<IList<YgoProDeckAPICardDTO>> BuildRequestGetCards(string name = "", string id = "")
         {
             string url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?misc=Yes";
+
+            if (!String.IsNullOrEmpty(id))
+            {
+                url += $"&id={id}";
+            }
+            else if (!String.IsNullOrEmpty(name))
+            {
+                url += $"&name={name}";
+            }
 
             YgoProDeckAPIContainerCardDTO response = await new HTTPService().Get<YgoProDeckAPIContainerCardDTO>(url);
 
@@ -23,7 +32,17 @@ namespace Back.Services
             return data;
         }
 
-        public async Task<IList<YgoProDeckAPIArchetypeDTO>> SynchronizeArchetypes()
+        public Task<IList<YgoProDeckAPICardDTO>> GetAllCards()
+        {
+            return BuildRequestGetCards();
+        }
+
+        public Task<IList<YgoProDeckAPICardDTO>> GetCardByName(string name)
+        {
+            return BuildRequestGetCards(name: name);
+        }
+
+        public async Task<IList<YgoProDeckAPIArchetypeDTO>> GetAllArchetypes()
         {
             string url = "https://db.ygoprodeck.com/api/v7/archetypes.php";
 
@@ -31,6 +50,8 @@ namespace Back.Services
 
             return archetypes;
         }
+
+        
 
         private CardType TransformTypeToEnum(string type)
         {
