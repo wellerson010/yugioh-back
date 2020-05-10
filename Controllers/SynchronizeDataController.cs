@@ -15,7 +15,7 @@ namespace Back.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> SynchronizeAll()
         {
-            await new APIService().SynchronizeAll();
+            await new APIService().GetAllCards();
             return new string[] { "value1", "value2" };
         }
     }

@@ -16,12 +16,20 @@ namespace Back.Services
         {
             string url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?misc=Yes";
 
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(url);
-            string responseBody = await response.Content.ReadAsStringAsync();
-            IList<YgoProDeckAPICardDTO> data = JsonConvert.DeserializeObject<YgoProDeckAPIContainerCardDTO>(responseBody).data;
+            YgoProDeckAPIContainerCardDTO response = await new HTTPService().Get<YgoProDeckAPIContainerCardDTO>(url);
+
+            IList<YgoProDeckAPICardDTO> data = response.data;
 
             return data;
+        }
+
+        public async Task<IList<YgoProDeckAPIArchetypeDTO>> SynchronizeArchetypes()
+        {
+            string url = "https://db.ygoprodeck.com/api/v7/archetypes.php";
+
+            IList<YgoProDeckAPIArchetypeDTO> archetypes = await new HTTPService().Get<IList<YgoProDeckAPIArchetypeDTO>>(url);
+
+            return archetypes;
         }
 
         private CardType TransformTypeToEnum(string type)
