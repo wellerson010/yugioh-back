@@ -1,6 +1,4 @@
 ﻿using Back.DTO.Card;
-using Back.Models.Entities;
-using Back.Models.Repository;
 using Back.ViewModels.Card;
 using Microsoft.AspNetCore.Mvc;
 using System;

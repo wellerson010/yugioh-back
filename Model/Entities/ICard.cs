@@ -1,10 +1,9 @@
-﻿using Back.Models.Enumns;
+﻿using Model.Enum;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace Back.Models.Entities
+namespace Model.Entities
 {
     public interface ICard
     {

@@ -1,18 +1,14 @@
-﻿using Back.Models.Entities;
+﻿using Model.Entities;
 using Raven.Client.Documents;
-using Raven.Client.Documents.Conventions;
 using Raven.Client.Documents.Operations;
 using Raven.Client.Documents.Session;
-using Raven.Client.Exceptions;
 using Raven.Client.Exceptions.Database;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace Back.Database
+namespace Model.Services
 {
     public class RavenService
     {
@@ -56,7 +52,7 @@ namespace Back.Database
                             return "Card";
                         }
 
-                        return typeof(Magic).Name;
+                        return type.Name;
                     }
                 },
 

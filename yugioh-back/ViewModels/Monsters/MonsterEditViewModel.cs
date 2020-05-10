@@ -1,5 +1,5 @@
-﻿using Back.Models.Entities;
-using Back.Models.Enumns;
+﻿using Model.Entities;
+using Model.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,6 @@ namespace Back.ViewModels.Monsters
         public string ATK { get; set; }
         public string DEF { get; set; }
         public int Level { get; set; }
-        public MonsterType MonsterType { get; set; }
 
         public MonsterEditViewModel()
         {
@@ -34,7 +33,6 @@ namespace Back.ViewModels.Monsters
             ATK = monster.ATK;
             DEF = monster.DEF;
             Level = monster.Level;
-            MonsterType = monster.MonsterType;
         } 
     }
 }

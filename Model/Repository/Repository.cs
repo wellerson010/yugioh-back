@@ -1,11 +1,11 @@
-﻿using Back.Database;
+﻿using Model.Services;
 using Raven.Client.Documents.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Back.Models.Repository
+namespace Model.Repository
 {
     public abstract class Repository<T> where T:class
     {

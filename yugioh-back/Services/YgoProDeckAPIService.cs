@@ -1,5 +1,5 @@
 ﻿using Back.DTO.API;
-using Back.Models.Enumns;
+using Model.Enum;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

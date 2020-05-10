@@ -1,10 +1,10 @@
-﻿using Back.Models.Entities;
+﻿using Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Back.Models.Repository
+namespace Model.Repository
 {
     public class MonsterRepository:Repository<Monster>
     {
