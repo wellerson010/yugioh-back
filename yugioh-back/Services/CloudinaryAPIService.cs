@@ -19,9 +19,9 @@ namespace Back.Services
             Cloudinary = new Cloudinary(account);
         }
 
-        public async Task<string> UploadPicture(string fileName, byte[] bytes)
+        public async Task<string> UploadPicture(string fileName, Stream stream /*, byte[] bytes*/)
         {
-            Stream stream = new MemoryStream(bytes);
+//            Stream stream = new MemoryStream(bytes);
 
             ImageUploadParams uploadParams = new ImageUploadParams()
             {
@@ -29,6 +29,8 @@ namespace Back.Services
             };
 
             ImageUploadResult uploadResult = await Cloudinary.UploadAsync(uploadParams);
+
+            stream.Dispose();
             return uploadResult.SecureUri.AbsoluteUri;
         }
     }
