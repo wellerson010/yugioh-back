@@ -18,7 +18,10 @@ namespace Back
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+            WebHost.CreateDefaultBuilder(args).ConfigureAppConfiguration(config =>
+            {
+                config.AddEnvironmentVariables(prefix: "YUGIOH_");
+            })
                 .UseStartup<Startup>();
     }
 }
