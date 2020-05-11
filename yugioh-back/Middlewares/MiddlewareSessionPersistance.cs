@@ -20,7 +20,7 @@ namespace Back.Middlewares
         {
             BeginInvoke(context);
             await next(context);
-            EndInvoke(context);
+            await EndInvoke(context);
         }
 
         private void BeginInvoke(HttpContext context)
@@ -28,11 +28,11 @@ namespace Back.Middlewares
             RavenService.Session = RavenService.Store.OpenAsyncSession();
         }
 
-        private void EndInvoke(HttpContext context)
+        private async Task EndInvoke(HttpContext context)
         {
             if (RavenService.Session != null)
             {
-                Task.Run(async () => await RavenService.Session.SaveChangesAsync());
+                await RavenService.Session.SaveChangesAsync();
                 RavenService.Session.Dispose();
             }
         }

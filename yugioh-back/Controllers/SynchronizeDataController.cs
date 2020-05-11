@@ -14,16 +14,19 @@ namespace Back.Controllers
     {
         private readonly IConfiguration Configuration;
 
-        public SynchronizeDataController(IConfiguration configuration)
+        private readonly ISynchronizeService SynchronizeService;
+
+        public SynchronizeDataController(IConfiguration configuration, ISynchronizeService synchronizeService)
         {
             Configuration = configuration;
+            SynchronizeService = synchronizeService;
         }
 
         [Route("synchronizeAll")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> SynchronizeAll()
         {
-            await new SynchronizeService().SynchronizeCard(Configuration, "Dark Hole");
+            await SynchronizeService.SynchronizeAllCards();
             return new string[] { "value1", "value2" };
         }
     }

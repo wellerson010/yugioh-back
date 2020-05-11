@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model.Repository
 {
-    public class MonsterRepository:Repository<Monster>
+    public class MonsterRepository
     {
 
     }

@@ -8,36 +8,35 @@ using System.Threading.Tasks;
 
 namespace Back.Services
 {
-    public class HTTPService
+    public class HTTPService : IHTTPService
     {
+        private readonly IHttpClientFactory HTTPClientFactory;
+
+        public HTTPService(IHttpClientFactory httpClientFactory)
+        {
+            HTTPClientFactory = httpClientFactory;
+        }
+
         public async Task<T> Get<T>(string url)
         {
-            using (HttpClient client = new HttpClient())
-            {
-                HttpResponseMessage response = await client.GetAsync(url);
-                string responseBody = await response.Content.ReadAsStringAsync();
-                T data = JsonConvert.DeserializeObject<T>(responseBody);
+            HttpClient client = HTTPClientFactory.CreateClient();
 
-                return data;
-            }
+            HttpResponseMessage response = await client.GetAsync(url);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            T data = JsonConvert.DeserializeObject<T>(responseBody);
+
+            return data;
         }
 
         public async Task<Stream> GetByteFromUrl(string url)
         {
-            using (HttpClient httpClient = new HttpClient())
+            HttpClient httpClient = HTTPClientFactory.CreateClient();
+
+            using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url))
             {
-                using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url))
-                {
-                    Stream contentStream = await (await httpClient.SendAsync(request)).Content.ReadAsStreamAsync();
-                    //   Stream stream = new FileStream("MyImage", FileMode.Create, FileAccess.Write, FileShare.None);
-                //    Stream stream = new MemoryStream(contentStream.Rea)
-                //   await contentStream.CopyToAsync(stream);
+                Stream contentStream = await (await httpClient.SendAsync(request)).Content.ReadAsStreamAsync();
 
-                //    contentStream.Dispose();
-
-                    return contentStream;
-
-                }
+                return contentStream;
             }
         }
     }

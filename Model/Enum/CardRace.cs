@@ -30,6 +30,8 @@ namespace Model.Enum
         Spellcaster,
         Thunder,
         Warrior,
+        Wyrm,
+        Zombie,
         WingedBeast,
         Normal,
         Field,

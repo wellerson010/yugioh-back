@@ -13,7 +13,9 @@ namespace Model.Entities
         public string Passcode { get; set; }
         public CardType Type { get; set; }
         public string Description { get; set; }
-
         public bool Staple { get; set; }
+        public CardRace Race { get; set; }
+        public DateTime TCGDate { get; set; }
+        public DateTime OCGDate { get; set; }
     }
 }

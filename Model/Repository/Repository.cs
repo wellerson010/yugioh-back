@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model.Repository
 {
-    public abstract class Repository<T> where T:class
+    public class Repository<T> : IRepository<T> where T:class, new()
     {
         public IAsyncDocumentSession Session
         {

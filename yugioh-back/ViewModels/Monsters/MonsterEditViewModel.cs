@@ -30,8 +30,8 @@ namespace Back.ViewModels.Monsters
             Passcode = monster.Passcode;
             Attribute = monster.Attribute;
             Description = monster.Description;
-            ATK = monster.ATK;
-            DEF = monster.DEF;
+         //   ATK = monster.ATK;
+        //    DEF = monster.DEF;
             Level = monster.Level;
         } 
     }

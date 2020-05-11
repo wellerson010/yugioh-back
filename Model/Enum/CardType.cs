@@ -34,6 +34,7 @@ namespace Model.Enum
         SynchroPendulumEffectMonster,
         SynchroTunerMonster,
         XYZMonster,
-        XYZPendulumEffectMonster
+        XYZPendulumEffectMonster,
+        Token
     }
 }
