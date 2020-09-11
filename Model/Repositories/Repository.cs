@@ -1,11 +1,12 @@
-﻿using Model.Services;
+﻿using Model.Interfaces.Repositories;
+using Model.Services;
 using Raven.Client.Documents.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Model.Repository
+namespace Model.Repositories
 {
     public class Repository<T> : IRepository<T> where T:class, new()
     {

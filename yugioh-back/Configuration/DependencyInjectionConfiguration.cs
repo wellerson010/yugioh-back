@@ -1,6 +1,7 @@
 ﻿using Back.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Model.Repository;
+using Model.Interfaces.Repositories;
+using Model.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

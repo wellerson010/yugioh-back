@@ -2,6 +2,8 @@
 
 WebAPI feito em .NetCore com RavenDB para a aplicação de gerenciamento de cartas do Yu-Gi-Oh!
 
-Cloudinary 1.10
+# Tecnologias
+
+.Net Core 3.1.0
 RavenDB.Client 4.2
-.NetCore 3.1.0
+Cloudinary 1.10

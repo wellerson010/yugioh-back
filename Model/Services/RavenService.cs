@@ -1,4 +1,4 @@
-﻿using Model.Entities;
+﻿using Model.Models;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Operations;
 using Raven.Client.Documents.Session;

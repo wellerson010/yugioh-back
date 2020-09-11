@@ -1,9 +1,9 @@
-﻿using Model.Enum;
+﻿using Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Model.Entities
+namespace Model.Interfaces.Models
 {
     public interface ICard
     {

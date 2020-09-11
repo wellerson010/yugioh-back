@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using Back.ViewModels;
 using Back.ViewModels.Monsters;
 using Microsoft.AspNetCore.Mvc;
-using Model.Entities;
-using Model.Repository;
 
 namespace Back.Controllers
 {

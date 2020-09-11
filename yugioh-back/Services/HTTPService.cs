@@ -23,7 +23,14 @@ namespace Back.Services
 
             HttpResponseMessage response = await client.GetAsync(url);
             string responseBody = await response.Content.ReadAsStringAsync();
-            T data = JsonConvert.DeserializeObject<T>(responseBody);
+
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+
+            T data = JsonConvert.DeserializeObject<T>(responseBody, settings);
 
             return data;
         }

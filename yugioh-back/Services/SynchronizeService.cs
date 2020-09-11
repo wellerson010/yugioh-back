@@ -1,8 +1,8 @@
 ﻿using Back.DTO.API;
 using Microsoft.Extensions.Configuration;
-using Model.Entities;
-using Model.Enum;
-using Model.Repository;
+using Model.Models;
+using Model.Enums;
+using Model.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Model.Interfaces.Models;
 
 namespace Back.Services
 {

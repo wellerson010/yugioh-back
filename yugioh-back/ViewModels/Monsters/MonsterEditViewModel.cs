@@ -1,5 +1,5 @@
-﻿using Model.Entities;
-using Model.Enum;
+﻿using Model.Enums;
+using Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

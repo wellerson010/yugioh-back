@@ -26,7 +26,13 @@ namespace Back.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> SynchronizeAll()
         {
+            try { 
             await SynchronizeService.SynchronizeAllCards();
+            }
+            catch (Exception e)
+            {
+
+            }
             return new string[] { "value1", "value2" };
         }
     }

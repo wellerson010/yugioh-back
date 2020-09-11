@@ -1,6 +1,6 @@
 ﻿using Back.DTO.API;
-using Model.Entities;
-using Model.Enum;
+using Model.Models;
+using Model.Enums;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
