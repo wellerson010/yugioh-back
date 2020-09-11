@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace Back.ViewModels
 {
-    public class ResponseViewModel
+    public class ResponseViewModel<T> 
     {
         public bool Error { get; set; } = false;
 
-        public dynamic Response { get; set; }
+        public T Response { get; set; }
 
-        public ResponseViewModel(object response)
+        public ResponseViewModel(T response)
         {
             Response = response;
         }

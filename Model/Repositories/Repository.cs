@@ -1,5 +1,7 @@
-﻿using Model.Interfaces.Repositories;
+﻿using Model.Interfaces.Models;
+using Model.Interfaces.Repositories;
 using Model.Services;
+using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Model.Repositories
 {
-    public class Repository<T> : IRepository<T> where T:class, new()
+    public class Repository<T> : IRepository<T> where T: IBaseModel, new()
     {
         public IAsyncDocumentSession Session
         {
@@ -36,6 +38,11 @@ namespace Model.Repositories
         public Task<T> GetById(string id)
         {
             return Session.LoadAsync<T>(id);
+        }
+
+        public Task<List<T>> GetAll()
+        {
+            return Session.Query<T>().ToListAsync();
         }
     }
 }

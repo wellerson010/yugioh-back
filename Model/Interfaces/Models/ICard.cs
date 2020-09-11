@@ -7,8 +7,6 @@ namespace Model.Interfaces.Models
 {
     public interface ICard
     {
-        string Id { get; set; }
-
         string Name { get; set; }
 
         string Passcode { get; set; }

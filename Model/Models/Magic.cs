@@ -7,7 +7,7 @@ using Model.Interfaces.Models;
 
 namespace Model.Models
 {
-    public class Magic : ICard
+    public class Magic : IBaseModel, ICard
     {
         public string Id { get; set; }
         public string Name { get; set; }

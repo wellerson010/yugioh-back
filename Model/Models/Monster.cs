@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model.Models
 {
-    public class Monster : ICard
+    public class Monster : IBaseModel, ICard
     {
         public string Id { get; set; }
         public string Name { get; set; }

@@ -21,8 +21,6 @@ namespace Back.Services
         private readonly IYgoProDeckAPIService YgoProDeckAPIService;
         Dictionary<string, string> racesNotFound = new Dictionary<string, string>();
 
-
-
         public SynchronizeService(IRepository<Monster> monsterRepository, IRepository<Magic> magicRepository, IYgoProDeckAPIService ygoProDeckApiService)
         {
             MonsterRepository = monsterRepository;
